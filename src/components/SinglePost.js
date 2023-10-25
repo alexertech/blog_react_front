@@ -1,33 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import config from '../config';
 
-const SinglePost = ({ match }) => {
+const SinglePost = () => {
   const [post, setPost] = useState({});
   const [readingTime, setReadingTime] = useState(null);
-  const postId = match.params.id;
+  const { id: postId } = useParams();
 
   useEffect(() => {
-    const fetchPost = async () => {
+    const fetchData = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/posts/${postId}`);
-        setPost(res.data);
+        const postRes = await axios.get(`${config.apiUrl}/posts/${postId}`);
+        setPost(postRes.data);
+
+        // const readingTimeRes = await axios.get(`${config.apiUrl}/posts/${postId}/read-time`);
+        // setReadingTime(readingTimeRes.data.reading_time);
       } catch (error) {
         console.error("An error occurred while fetching data: ", error);
       }
     };
 
-    const fetchReadingTime = async () => {
-      try {
-        // Assuming you have an endpoint to fetch reading time
-        const res = await axios.get(`http://localhost:3000/posts/${postId}/read-time`);
-        setReadingTime(res.data.reading_time);
-      } catch (error) {
-        console.error("An error occurred while fetching data: ", error);
-      }
-    };
-
-    fetchPost();
-    fetchReadingTime();
+    fetchData();
   }, [postId]);
 
   return (

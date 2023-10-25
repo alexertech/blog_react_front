@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import config from '../config';
 
 const PostLists = () => {
   const [posts, setPosts] = useState([]);
@@ -8,7 +9,7 @@ const PostLists = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await axios.get('http://localhost:3000/posts');
+        const res = await axios.get(`${config.apiUrl}/posts`);
         setPosts(res.data);
       } catch (error) {
         console.error("An error occurred while fetching data: ", error);
@@ -23,7 +24,7 @@ const PostLists = () => {
       <ul>
         {posts.map(post => (
           <li key={post.id}>
-            <Link to={`/posts/${post.id}`}>{post.title}</Link>
+            <Link to={`${config.apiUrl}/posts/${post.id}`}>{post.title}</Link>
           </li>
         ))}
       </ul>

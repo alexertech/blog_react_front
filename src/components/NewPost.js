@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import config from '../config';
 
 const NewPost = () => {
   const [postData, setPostData] = useState({
@@ -15,7 +16,7 @@ const NewPost = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post('http://localhost:3001/posts', postData);
+      await axios.post(`${config.apiUrl}/posts`, postData);
       alert("Post created successfully!");
     } catch (error) {
       console.error("An error occurred while sending data: ", error);
