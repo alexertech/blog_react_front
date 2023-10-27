@@ -1,23 +1,23 @@
-// src/App.js
-   
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import PostLists from './components/PostLists';
-import SinglePost from './components/SinglePost';
-import NewPost from './components/NewPost';
+import Header from './components/ui/Header';
+import SinglePost from './components/ui/SinglePost';
+import PostsList from './components/ui/PostsList';
+import CreatePost from './components/ui/CreatePost';
 
 function App() {
     return (
         <Router>
-            <Routes>
-                <Route path="/" element={<PostLists />} />
-                <Route path="/posts/new" element={<NewPost />} />
-                <Route path="/posts/:id" element={<SinglePost />} />
-            </Routes>
+            <Header />
+            <div className="container mt-4">
+                <Routes>
+                    <Route path="/" element={<PostsList />} />
+                    <Route path="/posts/:id" element={<SinglePost />} />
+                    <Route path="/create" element={<CreatePost />} />
+                </Routes>
+            </div>
         </Router>
     );
 }
-
-
 
 export default App;
