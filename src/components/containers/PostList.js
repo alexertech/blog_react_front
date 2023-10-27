@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Post from '../Post';
+import Post from './Post';
 import axios from 'axios';
-import config from '../../../config';
+import config from '../../config';
 
 const PostsList = () => {
   const [posts, setPosts] = useState([]);

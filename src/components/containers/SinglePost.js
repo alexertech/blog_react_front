@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useLocation } from 'react-router-dom';
-import config from '../../../config';
+import config from '../../config';
 
 const SinglePost = () => {
     const [post, setPost] = useState({});
